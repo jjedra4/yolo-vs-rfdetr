@@ -216,3 +216,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+GARBAGE-CLASSIFICATION-3-2/
+*.pt

@@ -1,1 +1,14 @@
-importlib
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# CPU-only PyTorch for laptop camera demos. This avoids downloading huge CUDA
+# packages such as nvidia-cudnn, nvidia-nccl and cuda-toolkit on Linux.
+torch==2.11.0+cpu
+torchvision==0.26.0+cpu
+
+ultralytics
+rfdetr
+opencv-python
+pillow
+ipython
+supervision
+pyyaml
