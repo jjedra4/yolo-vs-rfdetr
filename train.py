@@ -26,57 +26,44 @@ COMET_API_KEY = "BCLjdlqC1KpDDoCwKQJDFHCjS"
 # =========================
 rf = Roboflow(api_key=ROBOFLOW_API_KEY)
 
-project = rf.workspace("objectdetection-z2zn1").project("garbage-classification-3-bjcgp")
+project = rf.workspace("objectdetection-z2zn1").project(
+    "garbage-classification-3-bjcgp"
+)
 
 version_1280 = project.version(5)
 
 dataset_YOLOv8_1280 = version_1280.download(
-    "yolov8",
-    location="./datasets/yolo_1280",
-    overwrite=True
+    "yolov8", location="./datasets/yolo_1280", overwrite=True
 )
 
 dataset_COCO_1280 = version_1280.download(
-    "coco",
-    location="./datasets/coco_1280",
-    overwrite=True
+    "coco", location="./datasets/coco_1280", overwrite=True
 )
 
 version_640 = project.version(4)
 
 dataset_YOLOv8_640 = version_640.download(
-    "yolov8",
-    location="./datasets/yolo_640",
-    overwrite=True
+    "yolov8", location="./datasets/yolo_640", overwrite=True
 )
 
 dataset_COCO_640 = version_640.download(
-    "coco",
-    location="./datasets/coco_640",
-    overwrite=True
+    "coco", location="./datasets/coco_640", overwrite=True
 )
 
 version_416 = project.version(3)
 
 dataset_YOLOv8_416 = version_416.download(
-    "yolov8",
-    location="./datasets/yolo_416",
-    overwrite=True
+    "yolov8", location="./datasets/yolo_416", overwrite=True
 )
 
 dataset_COCO_416 = version_416.download(
-    "coco",
-    location="./datasets/coco_416",
-    overwrite=True
+    "coco", location="./datasets/coco_416", overwrite=True
 )
 
 # =========================
 # CONFIG
 # =========================
-comet_ml.init(
-    project_name="garbage-classification-comparison",
-    api_key=COMET_API_KEY
-)
+comet_ml.init(project_name="garbage-classification-comparison", api_key=COMET_API_KEY)
 
 datasets_yolo = {
     416: dataset_YOLOv8_416.location + "/data.yaml",
@@ -103,9 +90,12 @@ for model_name in model_types:
         print(f"\n--- START: {model_name} @ Rozdzielczość {res} ---")
         print("=" * 60)
 
+        experiment = Experiment(project_name="garbage-classification-comparison")
+
         model = YOLO(model_name)
 
         experiment_name = f"{model_name.split('.')[0]}_res{res}"
+        experiment.set_name(experiment_name)
 
         model.train(
             data=data_path,
@@ -113,12 +103,14 @@ for model_name in model_types:
             imgsz=res,
             batch=0.8,
             name=experiment_name,
-            project="Garbage_AI_Comparison",
+            project="garbage-classification-comparison",
             exist_ok=True,
             plots=True,
             val=True,
             seed=SEED,
         )
+
+        experiment.end()
 
         print(f"--- KONIEC: {experiment_name} ---\n")
 
@@ -135,7 +127,7 @@ for res, dataset_path in datasets_rfdetr.items():
     print(f"Training: {experiment_name}")
     print("=" * 60)
 
-    experiment = Experiment(project_name="garbage-ai-comparison")
+    experiment = Experiment(project_name="garbage-classification-comparison")
 
     experiment.set_name(experiment_name)
 
