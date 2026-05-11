@@ -205,6 +205,7 @@ tempCodeRunnerFile.py
 
 # Ruff stuff:
 .ruff_cache/
+.matplotlib-cache/
 
 # PyPI configuration file
 .pypirc
@@ -217,7 +218,11 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 GARBAGE-CLASSIFICATION-3-2/
+datasets/
+# runs/
+trained_weights/
 *.pt
+*.pth
 
 # Datasets
 GARBAGE-CLASSIFICATION-3-*/

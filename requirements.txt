@@ -1,10 +1,5 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-
-# CPU-only PyTorch for laptop camera demos. This avoids downloading huge CUDA
-# packages such as nvidia-cudnn, nvidia-nccl and cuda-toolkit on Linux.
-torch==2.11.0+cpu
-torchvision==0.26.0+cpu
-
+# Install PyTorch separately with either requirements-cpu.txt or
+# requirements-gpu-cu128.txt, depending on the machine.
 ultralytics
 rfdetr[train,loggers]
 opencv-python
@@ -14,3 +9,4 @@ supervision
 pyyaml
 roboflow
 comet_ml
+python-dotenv
