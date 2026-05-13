@@ -218,11 +218,38 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 GARBAGE-CLASSIFICATION-3-2/
+
+# Project datasets and model artifacts
 datasets/
-# runs/
 trained_weights/
-*.pt
-*.pth
+deploy/
+runs copy/
+rf-detr-*.pth
+yolo*.pt
+
+# Keep lightweight Jetson benchmark tables/summaries, not raw logs or exported engines.
+jetson_results/**
+!jetson_results/
+!jetson_results/**/
+!jetson_results/**/tables/
+!jetson_results/**/tables/**
+!jetson_results/**/benchmark_summary.csv
+!jetson_results/**/trtexec_engine_summary.csv
+
+# Keep lightweight experiment summaries and paper-ready plots, not raw runs/checkpoints.
+runs/train_compare/**
+!runs/train_compare/
+!runs/train_compare/summary.jsonl
+!runs/train_compare/plots/
+!runs/train_compare/plots/**
+!runs/train_compare/yolo/
+!runs/train_compare/yolo/*_data640_img640/
+!runs/train_compare/yolo/*_data640_img640/args.yaml
+!runs/train_compare/yolo/*_data640_img640/results.csv
+!runs/train_compare/rfdetr/
+!runs/train_compare/rfdetr/rfdetr_*_data640_img*/
+!runs/train_compare/rfdetr/rfdetr_*_data640_img*/hparams.yaml
+!runs/train_compare/rfdetr/rfdetr_*_data640_img*/metrics.csv
 
 # Datasets
 GARBAGE-CLASSIFICATION-3-*/
