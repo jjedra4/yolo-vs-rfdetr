@@ -1,0 +1,17 @@
+[Unit]
+Description=YOLO vs RF-DETR Jetson browser demo
+After=network-online.target nvargus-daemon.service
+Wants=network-online.target nvargus-daemon.service
+
+[Service]
+Type=simple
+User=jetson
+WorkingDirectory=/home/jetson/yolo-vs-rfdetr
+Environment=PYTHONUNBUFFERED=1
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/python3 /home/jetson/yolo-vs-rfdetr/jetson/live_demo.py --host 0.0.0.0 --port 8080 --camera csi --sensor-id 0 --width 1280 --height 720 --fps 30 --yolo-run yolov8m_data640_img640 --yolo-conf 0.10 --rfdetr-conf 0.25 --max-box-area 0.55 --max-box-width 0.90 --max-box-height 0.90 --manifest /home/jetson/yolo-vs-rfdetr/deploy/exports/manifest.jsonl --data-yaml /home/jetson/yolo-vs-rfdetr/datasets/yolo_640/data.yaml
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
