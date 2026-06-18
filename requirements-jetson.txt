@@ -1,0 +1,14 @@
+# Use this inside a Jetson virtualenv created with --system-site-packages so
+# NVIDIA's JetPack PyTorch/TensorRT packages remain visible.
+ultralytics
+rfdetr
+numpy==1.26.4
+pandas>=2.2
+scikit-learn>=1.4
+pillow
+pyyaml
+tqdm
+supervision
+onnx
+onnx-graphsurgeon
+polygraphy
